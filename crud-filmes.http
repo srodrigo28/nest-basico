@@ -1,0 +1,15 @@
+GET http://localhost:3000/crud-filmes
+
+###
+GET http://localhost:3000/crud-filmes/2
+
+
+####
+POST http://localhost:3000/crud-filmes/criar
+Content-Type: application/json
+
+{
+    "titulo": "Novo Filme 2025",
+    "diretor": "Novo Diretor 25",
+    "ano": 2025
+}

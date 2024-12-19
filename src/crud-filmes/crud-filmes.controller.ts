@@ -1,5 +1,7 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { CrudFilmesService } from './crud-filmes.service';
+import { CriarFilmeDTO } from './dto/CriarFilmeDTO';
+import { EditarFilmeDTO } from './dto/EditarFilmeDTO';
 
 @Controller('crud-filmes')
 export class CrudFilmesController {
@@ -16,7 +18,7 @@ export class CrudFilmesController {
     }
     
     @Post("/criar")
-    criar(@Body() dadosFilme: any){
+    criar(@Body() dadosFilme: CriarFilmeDTO){
         return this.crudFilmesService.criar(dadosFilme)
     }
 
@@ -26,7 +28,12 @@ export class CrudFilmesController {
     }
 
     @Put(":id")
-    atualizarUm(@Param("id") id:string){
-        return this.crudFilmesService.atualizarUm(id)
+    atualizarUm(@Param("id") id:string, @Body() dadosFilme: EditarFilmeDTO){
+        return this.crudFilmesService.atualizarUm(id, dadosFilme)
+    }
+
+    @Delete(":id")
+    deletar(@Param("id") id:number){
+        return this.crudFilmesService.deletar(id)
     }
 }

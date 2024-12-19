@@ -13,3 +13,5 @@ npx nest generate service crud-filmes --no-spec
 npx nest --help
 
 * rodar o projeto
+
+npm i class-validator class-transformer

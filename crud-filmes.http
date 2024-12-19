@@ -1,15 +1,25 @@
 GET http://localhost:3000/crud-filmes
-
 ###
-GET http://localhost:3000/crud-filmes/2
-
-
+GET http://localhost:3000/crud-filmes/1
 ####
 POST http://localhost:3000/crud-filmes/criar
 Content-Type: application/json
 
 {
-    "titulo": "Novo Filme 2025",
-    "diretor": "Novo Diretor 25",
+    "titulo": "Novo Filme 2005",
+    "diretor": "Novo Diretor 2005",
     "ano": 2025
 }
+
+####
+PUT http://localhost:3000/crud-filmes/1
+Content-Type: application/json
+
+{
+    "titulo": "Novo EDITADO Filme 2030",
+    "diretor": "Novo EDITADO Diretor 2030",
+    "ano": 2030
+}
+
+###
+DELETE http://localhost:3000/crud-filmes/0

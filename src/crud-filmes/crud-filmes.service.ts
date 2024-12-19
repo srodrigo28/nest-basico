@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { EditarFilmeDTO } from './dto/EditarFilmeDTO';
+import { CriarFilmeDTO } from './dto/CriarFilmeDTO';
 
 @Injectable()
 export class CrudFilmesService {
@@ -7,11 +9,9 @@ export class CrudFilmesService {
         { titulo: 'Filme 2', diretor: 'Diretor 2', ano: 2022 },
         { titulo: 'Filme 3', diretor: 'Diretor 3', ano: 2023 },
     ]
-    
     pegarTodos(){
         return this.filmes
     }
-
     pegarTodos2(investido: string){
         if(investido === "true"){
             // return this.filmes.sort
@@ -19,14 +19,21 @@ export class CrudFilmesService {
         }
         return this.filmes
     }
-
-    criar(novoFilme:any){
-        return this.filmes.push(novoFilme)
+    criar(novoFilme:CriarFilmeDTO){
+        const novo = this.filmes.push(novoFilme)
+        return novoFilme
     }
-    atualizarUm(id: string | string){
-        
+    atualizarUm(id: number | string, dados: EditarFilmeDTO){
+        const filme = this.filmes[id]
+        const filmeAtualizado = { ...filme, ...dados }
+        this.filmes[id] = filmeAtualizado
+        return filmeAtualizado        
     }
-    pegarUm(id: string | string){
+    pegarUm(id: number | string){
         return this.filmes[Number(id)]
+    }
+    deletar(id: number){
+        const filme = this.filmes.splice(+id, 1)
+        return filme
     }
 }
